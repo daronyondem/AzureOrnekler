@@ -1,0 +1,58 @@
+Create Federation
+Name="MyFederation"
+Distribution Name = "CustID"
+Data Type = int
+
+Go into the federation
+Query / Create Federated Table
+
+CREATE TABLE Customers(
+  CustomerID uniqueidentifier NOT NULL,
+  CompanyName nvarchar(50) NOT NULL,
+  FirstName nvarchar(50),
+  LastName nvarchar(50),
+  PRIMARY KEY (CustomerId) )
+FEDERATED ON (CustId = CustomerID)
+GO
+
+INSERT INTO Customers (CustomerID, CompanyName, FirstName, LastName)
+VALUES (1, 'Van Nuys', 'Catherine', 'Abel')
+GO
+INSERT INTO Customers (CustomerID, CompanyName, FirstName, LastName)
+VALUES (2, 'Abercrombie', 'Kim', 'Branch')
+GO
+INSERT INTO Customers (CustomerID, CompanyName, FirstName, LastName)
+VALUES (3, 'Contoso', 'Frances', 'Adams')
+GO
+INSERT INTO Customers (CustomerID, CompanyName, FirstName, LastName)
+VALUES (4, 'A. Datum Corporation', 'Mark', 'Harrington')
+GO
+INSERT INTO Customers (CustomerID, CompanyName, FirstName, LastName)
+VALUES (5, 'Adventure Works', 'Keith', 'Harris')
+GO
+INSERT INTO Customers (CustomerID, CompanyName, FirstName, LastName)
+VALUES (6, 'Alpine Ski House', 'Wilson', 'Pais')
+
+/Split!
+
+USE FEDERATION MyFederation (CustId = '00000000-0000-0000-0000-000000000000') WITH RESET, FILTERING = OFF
+GO
+
+-- Query Federation Metadata   
+USE FEDERATION ROOT WITH RESET
+GO
+
+-- Federation
+SELECT * FROM sys.Federations
+GO
+
+-- Federation Members
+SELECT * FROM sys.federation_member_distributions
+GO
+
+
+
+
+
+
+
