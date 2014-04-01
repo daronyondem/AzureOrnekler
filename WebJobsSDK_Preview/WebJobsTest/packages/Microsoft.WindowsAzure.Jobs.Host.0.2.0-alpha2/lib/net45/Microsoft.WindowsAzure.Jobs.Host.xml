@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.WindowsAzure.Jobs.Host</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.WindowsAzure.Jobs.SimpleWatcher">
+            <summary>
+            A watcher with a static, settable status string.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.FunctionInvocationIndexEntity">
+             <summary>
+             Represents an entry in the secondary-index tables that are used to 
+             look up function invocations per job, per status, per function, etc.
+             </summary>
+             <remarks>
+             It abstracts away the three different shapes we currently have for indexing function invocations:
+             1. MRU tables, that has the target invocation id as a STRING column named 'Value'
+             2. InJob index table, that has the target invocation id as a GUID column named 'InvocationId'
+             3. CausalityLog  table, that has the target invocation id as a field called "ChildGuid" within a Json Serialized complex object named 'Data'
+            
+             in Future releases we will have the dashboard percolate and clean the raw data sent from the host, in and then we will converge all
+             invocation indexes to a common shape, and normalize this class.
+             </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.Host.JsonTypeNameAttribute">
+            <summary>
+            Provides a key to use in place of the .NET type name when deserializing polymophic objects using
+            <see cref="T:Microsoft.WindowsAzure.Jobs.Host.PolymorphicJsonConverter"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.Host.PolymorphicJsonConverter">
+            <remarks>
+            Unlike $type in JSON.NET, this converter decouples the message data from the .NET class and assembly names.
+            It also allows emitting a type on the root object.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.Host.Storage.CloudRequestResult">
+            <remarks>
+            This class exists solely to provide compatibility with the current SDK's exception structure.
+            Once we use the latest SDK, we can remove this class entirely.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.Host.Storage.CloudStorageException">
+            <remarks>
+            This class exists solely to provide compatibility with the current SDK's exception structure.
+            Once we use the latest SDK, we can remove this class entirely.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.FunctionsInJobIndexer">
+            <summary>
+            Mapping WebJob runs to the functions that it ran.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.IHostTable">
+            <summary>Defines a table that maps a host name to an ID.</summary>
+            <remarks>
+            The host GUID serves as an key for lookup purposes, such as for host heartbeats and invocation queues.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.ICanFailCommand">
+            <summary>Defines a command that may fail gracefully.</summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.ICanFailCommand.TryExecute">
+            <summary>Attempts to execute the command.</summary>
+            <returns><see langword="false"/> if the command fails gracefully; otherwise <see langword="true"/>.</returns>
+            <remarks>This method returns <see langword="false"/> rather than throwing to indicate a graceful failure.</remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.DefaultConnectionStringProvider.GetConnectionString(System.String)">
+            <summary>
+            Reads a connection string from the connectionStrings configuration section, or from an environment variable if it is missing from the configuration file, or is an empty string.
+            </summary>
+            <param name="connectionStringName">The name of the connection string to look up.</param>
+            <returns>The connection string, or <see langword="null"/> if no connection string was found.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.IMaybeErrorBindResult">
+            <summary>
+            Indicates a possible error during runtime binding.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.IIntervalSeparationCommand">
+            <summary>Defines a command that occurs at an interval that may change with every execution.</summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.IIntervalSeparationCommand.Execute">
+            <summary>Executes the command.</summary>
+            <remarks>Calling this method may result in an updated <see cref="P:Microsoft.WindowsAzure.Jobs.IIntervalSeparationCommand.SeparationInterval"/>.</remarks>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.IIntervalSeparationCommand.SeparationInterval">
+            <summary>Returns the current interval to wait before running <see cref="M:Microsoft.WindowsAzure.Jobs.IIntervalSeparationCommand.Execute"/> again.</summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.FailedParameterRuntimeBinding">
+            <summary>
+            This will defer binding errors that happen before the invocation to resurface just before invocation, 
+            when the mechanics of error handling and logging are properly set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.RunnerProgram.HandleFunctionReturnParameter(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Handles the function return value and logs it, if necessary
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.SelfWatch.EncodeSelfWatchStatus(System.String)">
+            <summary>
+            The protocol between Host and Dashboard for SelfWatch notes demand that newlines are encoded as "; ".
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.SelfWatch.DecodeSelfWatchStatus(System.String)">
+            <summary>
+            The protocol between Host and Dashboard for SelfWatch notes demand that newlines are encoded as "; ".
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.WatchableStream.Complete">
+            <summary>
+            Ensure the stream is closed, and calculate whether it was written to or not.
+            </summary>
+            <returns>True if the stream was written to, or was already closed at the time
+            this method was called. False otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.IntervalSeparationTimer">
+            <summary>Represents a timer that keeps a heartbeat running at a specified interval using a separate thread.</summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.JobHost">
+            <summary>
+            Defines properties and methods to locate Job methods and listen to trigger events in order
+            to execute Job methods.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.#ctor">
+            <summary>
+            Initializes a new instance of the JobHost class, using a Windows Azure Storage connection string located
+            in the connectionStrings section of the configuration file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the JobHost class, using a single Windows Azure Storage connection string for
+            both reading and writing data as well as logging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the JobHost class, using one Windows Azure Storage connection string for
+            reading and writing data and another connection string for logging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.RunOnBackgroundThread">
+            <summary>
+            Runs the jobs on a background thread and return immediately.
+            The trigger listeners and jobs will execute on the background thread.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.RunOnBackgroundThread(System.Threading.CancellationToken)">
+            <summary>
+            Runs the jobs on a background thread and return immediately.
+            The trigger listeners and jobs will execute on the background thread.
+            The thread exits when the cancellation token is signalled.
+            </summary>
+            <param name="token">The token to monitor for cancellation requests.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.RunAndBlock">
+            <summary>
+            Runs the jobs on the current thread.
+            The trigger listeners and jobs will execute on the current thread.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.RunAndBlock(System.Threading.CancellationToken)">
+            <summary>
+            Runs the jobs on the current thread.
+            The trigger listeners and jobs will execute on the current thread.
+            The thread will be blocked until the cancellation token is signalled.
+            </summary>
+            <param name="token">The token to monitor for cancellation requests.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.Call(System.Reflection.MethodInfo)">
+            <summary>
+            Invoke a specific function specified by the method parameter.
+            </summary>
+            <param name="method">A MethodInfo representing the job method to execute.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.JobHost.Call(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Invoke a specific function specified by the method parameter.
+            </summary>
+            <param name="method">A MethodInfo representing the job method to execute.</param>
+            <param name="arguments">An object with public properties representing argument names and values to bind to the parameter tokens in the job method's arguments.</param>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.JobHost.UserAccountName">
+            <summary>
+            Gets the storage account name from the connection string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.DefaultStorageValidator.TryValidateConnectionString(System.String,System.String@)">
+            <summary>
+            Validate a Windows Azure Storage connection string, by parsing it, and placing
+            a call to Azure to assert the credentials validity as well.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.QueueClient.ValidateQueueName(System.String)">
+            <summary>
+            Ensures that the passed name is a valid queue name.
+            If not, an ArgumentException is thrown
+            </summary>
+            <exception cref="T:System.ArgumentException">If the name is invalid</exception>
+            <param name="name">The name to be tested</param>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.Credentials">
+            <summary>
+            Store all sensitive information in one spot.  
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.Credentials.AccountConnectionString">
+            <summary>
+            The azure storage account connection string that blob and queue triggers bind against. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.TriggerType">
+            <summary>
+            Define the kind of trigger
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Jobs.TriggerType.Blob">
+            <summary>
+            Blob trigger, invoked when an input blob is detected. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Jobs.TriggerType.Queue">
+            <summary>
+            Queue Trigger, invoked when a new queue mesasge is detected
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAzure.Jobs.TriggerType.Timer">
+            <summary>
+            Timer trigger, invoked when a timer is fired. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAzure.Jobs.TriggerRaw">
+            <summary>
+            Wire protocol for an serializing triggers.
+            Irrelevant fields should reamin null.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.TriggerRaw.NewBlob(System.String,System.String,System.String)">
+            <summary>
+            Create a new trigger on blobs. This fires the callback if a new input blob is detected. The http content is the string name of the blob path that was detected. 
+            For example, if input is 'container/{name}.txt', and output is 'container/outputs/{nane}.txt;
+            </summary>
+            <param name="callbackPath">The uri to get invoked when this trigger fires.</param>
+            <param name="blobInput">An input path to search for. The blob name can include 'route parameters' for pattern matching, is and of the form 'container/blob'. </param>
+            <param name="blobOutput">A semicolon delimited list of output paths. The trigger is not fired if all outputs are newer than the input. 
+            This can have route parameters which are populated from the capture at the input values.</param>
+            <returns>A trigger object.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.TriggerRaw.NewQueue(System.String,System.String)">
+            <summary>
+            Create a new trigger on queue message. This fires the callback when a new queue message is detected, where the http request contents are the azure queue message contents. 
+            The azure message is deleted if the callback is invoked. 
+            </summary>
+            <param name="callbackPath">The uri to get invoked when this trigger fires.</param>
+            <param name="queueName">The azure queue to listen on. Be sure to adhere to azure queue naming rules, including being all lowercase.</param>
+            <returns>A trigger object.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAzure.Jobs.TriggerRaw.NewTimer(System.String,System.TimeSpan)">
+            <summary>
+            Create a trigger that fires on a timer interval. 
+            </summary>
+            <param name="callbackPath">The uri to get invoked when this trigger fires.</param>
+            <param name="interval">The frequency at which to invoke the timer</param>
+            <returns>A trigger object.</returns>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.TriggerRaw.Type">
+            <summary>
+            Define what type of trigger. 
+            Serializing can emit as either the raw number or the name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.TriggerRaw.CallbackPath">
+            <summary>
+            Invoke this path when the trigger fires 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.TriggerRaw.BlobInput">
+            <summary>
+            For Blobs, blob path for the input. This is of the form "container/blob"
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.TriggerRaw.BlobOutput">
+            <summary>
+            For Blobs, optional. semicolon delimited list of blob paths for the output. This is of the form 
+            "container1/blob1;container2/blob2"
+            The trigger is not fired if all outputs have a more recent modified timestamp than the input. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.TriggerRaw.QueueName">
+            <summary>
+            For Queues. The name of the azure queue. Be sure to follow azure queue naming rules, including all lowercase.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAzure.Jobs.TriggerRaw.Interval">
+            <summary>
+            For timers, the interval between when the time is fired. 
+            </summary>
+        </member>
+    </members>
+</doc>
