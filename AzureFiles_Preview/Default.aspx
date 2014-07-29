@@ -8,11 +8,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="File Share Oluştur" />
-    
-    </div>
+        <div>
+
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="File Share Oluştur" />
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="File Share Map" />
+            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="REST Erişimi" />
+        </div>
     </form>
 </body>
 </html>

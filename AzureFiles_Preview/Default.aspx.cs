@@ -3,6 +3,7 @@ using Microsoft.WindowsAzure.Storage.File;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,8 +22,10 @@ public partial class _Default : System.Web.UI.Page
         CloudStorageAccount account = CloudStorageAccount.Parse(this.connString);
         CloudFileClient client = account.CreateCloudFileClient();
         CloudFileShare share = client.GetShareReference("birklasor");
-        share.CreateIfNotExistsAsync().Wait();
-
+        share.CreateIfNotExistsAsync().Wait();       
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
         Process p = new Process();
         int exitCode;
         p.StartInfo.FileName = "net.exe";
@@ -35,6 +38,19 @@ public partial class _Default : System.Web.UI.Page
         p.WaitForExit(20000);
         exitCode = p.ExitCode;
         p.Close();
-        
+
+        using (StreamWriter outfile = new StreamWriter(@"Z:\deneme.txt"))
+        {
+            outfile.Write("Merhaba Dünya!");
+        }
+    }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        CloudStorageAccount account = CloudStorageAccount.Parse(this.connString);
+        CloudFileClient client = account.CreateCloudFileClient();
+        CloudFileShare share = client.GetShareReference("birklasor");
+        CloudFileDirectory rootDirectory = share.GetRootDirectoryReference();
+        CloudFile aCloudFile = rootDirectory.GetFileReference("deneme.txt");
+        Response.Write(aCloudFile.DownloadText());
     }
 }
