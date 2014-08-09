@@ -32,5 +32,28 @@ namespace WebJobsTestApp
                 stw.Write(tumMetin.ToLower());
             }
         }
+
+        public class OrnekKuyrukMesaji
+        {
+            public string Icerik1 { get; set; }
+            public string Icerik2 { get; set; }
+        }
+
+        public class GidenMesaj
+        {
+            public string Icerik1 { get; set; }
+            public string Icerik2 { get; set; }
+        }
+        public static void KuyruktanGelenKuyrugaGider(
+            [QueueInput("gelenkuyruk")] OrnekKuyrukMesaji parametre,
+            [QueueOutput("gidenkuyruk")] out GidenMesaj gidenParametre,
+            [QueueOutput("log")] out string log)
+        {
+            gidenParametre = new GidenMesaj();
+            gidenParametre.Icerik2 = parametre.Icerik1;
+            gidenParametre.Icerik1 = parametre.Icerik1;
+            log = gidenParametre.Icerik1;
+        }
+
     }
 }
