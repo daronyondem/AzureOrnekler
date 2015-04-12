@@ -25,5 +25,15 @@ namespace BlobSample
             container.CreateIfNotExists();
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudBlobClient blobClient = account.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("files");
+            var blob = container.GetBlockBlobReference(FileUpload1.FileName);
+            blob.UploadFromStream(FileUpload1.FileContent);
+            Response.Write(blob.Uri.ToString());
+        }
+
     }
 }

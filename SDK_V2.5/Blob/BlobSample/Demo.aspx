@@ -11,6 +11,9 @@
         <div>
             <asp:Button ID="Button1" runat="server" Text="Create Container" OnClick="Button1_Click" />
         </div>
+        <div>
+            <asp:FileUpload ID="FileUpload1" runat="server" /><asp:Button ID="Button2" runat="server" Text="Upload File" OnClick="Button2_Click" />
+        </div>
     </form>
 </body>
 </html>
