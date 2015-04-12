@@ -16,5 +16,12 @@ namespace Samples
 
         }
 
+        protected async void Button1_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("Urunler");
+            await table.CreateIfNotExistsAsync();
+        }
     }
 }
