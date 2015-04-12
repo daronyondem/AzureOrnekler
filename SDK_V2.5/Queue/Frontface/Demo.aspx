@@ -11,7 +11,9 @@
         <div>    
             <asp:Button ID="Button1" runat="server" Text="Create Queue" OnClick="Button1_Click" />    
         </div>
+        <div>
+            <asp:Button ID="Button2" runat="server" Text="Add Job" OnClick="Button2_Click" />
+        </div>
     </form>
 </body>
 </html>
-

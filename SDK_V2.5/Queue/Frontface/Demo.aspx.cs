@@ -24,5 +24,13 @@ namespace Frontface
             await q.CreateIfNotExistsAsync();
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudQueueClient queueClient = account.CreateCloudQueueClient();
+            CloudQueue q = queueClient.GetQueueReference("jobqueue");
+            CloudQueueMessage yeniMesaj = new CloudQueueMessage(Guid.NewGuid().ToString());
+            q.AddMessage(yeniMesaj);
+        }
     }
 }
