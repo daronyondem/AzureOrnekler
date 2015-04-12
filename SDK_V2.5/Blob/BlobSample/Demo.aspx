@@ -20,7 +20,9 @@
         <div>
             <asp:Button ID="Button4" runat="server" Text="Delete all blobs" OnClick="Button4_Click" />
         </div>
+        <div>
+            <asp:Button ID="Button5" runat="server" Text="Download Blob" OnClick="Button5_Click" />
+        </div>
     </form>
 </body>
 </html>
-

@@ -57,5 +57,18 @@ namespace BlobSample
             }
         }
 
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudBlobClient blobClient = account.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("files");
+            foreach (var blobItem in container.ListBlobs())
+            {
+                using (var fileStream = System.IO.File.OpenWrite(Path.GetTempFileName()))
+                {
+                    ((ICloudBlob)blobItem).DownloadToStream(fileStream);
+                }
+            }
+        }
     }
 }
