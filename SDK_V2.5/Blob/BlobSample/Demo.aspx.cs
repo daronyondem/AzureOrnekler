@@ -45,5 +45,17 @@ namespace BlobSample
             container.SetPermissions(containerPermissions);
         }
 
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudBlobClient blobClient = account.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("files");
+
+            foreach (var item in container.ListBlobs())
+            {
+                ((ICloudBlob)item).Delete();
+            }
+        }
+
     }
 }

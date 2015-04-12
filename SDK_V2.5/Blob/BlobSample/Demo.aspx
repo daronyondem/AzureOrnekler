@@ -17,6 +17,9 @@
         <div>
             <asp:Button ID="Button3" runat="server" Text="Set Permissions" OnClick="Button3_Click" />
         </div>
+        <div>
+            <asp:Button ID="Button4" runat="server" Text="Delete all blobs" OnClick="Button4_Click" />
+        </div>
     </form>
 </body>
 </html>
