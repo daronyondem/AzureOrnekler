@@ -9,6 +9,7 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace BackendWorker
 {
@@ -57,7 +58,17 @@ namespace BackendWorker
         private async Task RunAsync(CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
-            {
+            {             
+                CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+                CloudQueueClient queueClient = account.CreateCloudQueueClient();
+                CloudQueue q = queueClient.GetQueueReference("jobqueue");
+                await q.CreateIfNotExistsAsync();
+                CloudQueueMessage currentMessage = await q.GetMessageAsync();
+                if (currentMessage != null)
+                {
+                    Trace.TraceInformation(currentMessage.AsString);
+                    await q.DeleteMessageAsync(currentMessage);
+                }               
                 await Task.Delay(1000);
             }
         }
