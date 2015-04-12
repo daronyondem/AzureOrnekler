@@ -54,5 +54,30 @@ namespace Samples
                 await table.ExecuteAsync(deleteOperation);
             }
         }
+
+        protected async void Button4_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("Urunler");
+            TableBatchOperation batchOperation = new TableBatchOperation();
+
+            for (int i = 0; i < 100; i++)
+            {
+                batchOperation.InsertOrMerge(new Urun()
+                {
+                    PartitionKey = "Musteri" + i.ToString(),
+                    RowKey = (new Random().Next(1, 100)).ToString(),
+                    Adi = "Deneme",
+                    Aciklama = "Açıklama"
+                });
+            }
+            IList<TableResult> results = await table.ExecuteBatchAsync(batchOperation);
+
+            foreach (var res in results)
+            {
+                var eklenenUrun = res.Result as Urun;
+            }
+        }
     }
 }

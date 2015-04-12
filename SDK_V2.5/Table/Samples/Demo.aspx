@@ -15,7 +15,10 @@
             <asp:Button ID="Button2" runat="server" Text="Insert Entity" OnClick="Button2_Click" />
         </div>
         <div>
-            <asp:Button ID="Button3" runat="server" Text="Delete Entity" />
+            <asp:Button ID="Button3" runat="server" Text="Delete Entity" OnClick="Button3_Click" />
+        </div>
+        <div>
+            <asp:Button ID="Button4" runat="server" Text="Transaction" />
         </div>
     </form>
 </body>
