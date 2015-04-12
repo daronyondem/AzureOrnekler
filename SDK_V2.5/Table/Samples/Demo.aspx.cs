@@ -79,5 +79,47 @@ namespace Samples
                 var eklenenUrun = res.Result as Urun;
             }
         }
+
+        protected async void Button5_Click(object sender, EventArgs e)
+        {
+            //Creating test data.
+            CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("Urunler");
+            await table.CreateIfNotExistsAsync();
+
+            for (int i = 0; i < 10000; i++)
+            {
+                Urun urun = new Urun()
+                {
+                    PartitionKey = "Musteri1",
+                    RowKey = i.ToString(),
+                    Adi = "Deneme",
+                    Aciklama = "Açıklama"
+                };
+                TableOperation insertOrMergeOperation = TableOperation.InsertOrMerge(urun);
+                TableResult result = await table.ExecuteAsync(insertOrMergeOperation);
+            }
+
+            //Query data
+            TableQuery<Urun> partitionScanQuery = new TableQuery<Urun>().Where
+            (TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Silver"));
+
+            TableContinuationToken token = null;
+            do
+            {
+                TableQuerySegment<Urun> segment =
+                    await table.ExecuteQuerySegmentedAsync(partitionScanQuery, token);
+                token = segment.ContinuationToken;
+                foreach (Urun entity in segment)
+                {
+                    Response.Write(string.Format("Kim gelmiş?: {0},{1}\t{2}",
+                            entity.PartitionKey,
+                            entity.RowKey,
+                            entity.Adi));
+                }
+            }
+            while (token != null);
+        }
     }
 }
