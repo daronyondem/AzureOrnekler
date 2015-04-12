@@ -110,6 +110,7 @@
       <DependentUpon>Demo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Urun.cs" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <PropertyGroup>

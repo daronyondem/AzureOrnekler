@@ -23,5 +23,21 @@ namespace Samples
             CloudTable table = tableClient.GetTableReference("Urunler");
             await table.CreateIfNotExistsAsync();
         }
+
+        protected async void Button2_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("Urunler");
+            Urun urun = new Urun()
+            {
+                PartitionKey = "Musteri1",
+                RowKey = (new Random().Next(1, 100)).ToString(),
+                Adi = "Deneme",
+                Aciklama = "Açıklama"
+            };
+            TableOperation insertOrMergeOperation = TableOperation.InsertOrMerge(urun);
+            TableResult result = await table.ExecuteAsync(insertOrMergeOperation);
+        }
     }
 }
