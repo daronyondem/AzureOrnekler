@@ -39,5 +39,20 @@ namespace Samples
             TableOperation insertOrMergeOperation = TableOperation.InsertOrMerge(urun);
             TableResult result = await table.ExecuteAsync(insertOrMergeOperation);
         }
+
+        protected async void Button3_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("Urunler");
+            TableOperation retrieveOperation = TableOperation.Retrieve<Urun>("Musteri1", "1");
+            TableResult result = await table.ExecuteAsync(retrieveOperation);
+            Urun urun = result.Result as Urun;
+            if (urun != null)
+            {
+                TableOperation deleteOperation = TableOperation.Delete(urun);
+                await table.ExecuteAsync(deleteOperation);
+            }
+        }
     }
 }

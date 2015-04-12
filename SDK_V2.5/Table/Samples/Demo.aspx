@@ -14,6 +14,9 @@
         <div>
             <asp:Button ID="Button2" runat="server" Text="Insert Entity" OnClick="Button2_Click" />
         </div>
+        <div>
+            <asp:Button ID="Button3" runat="server" Text="Delete Entity" />
+        </div>
     </form>
 </body>
 </html>
