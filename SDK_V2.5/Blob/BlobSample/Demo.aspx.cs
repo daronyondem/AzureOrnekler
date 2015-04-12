@@ -35,5 +35,15 @@ namespace BlobSample
             Response.Write(blob.Uri.ToString());
         }
 
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+            CloudBlobClient blobClient = account.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("files");
+            BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
+            containerPermissions.PublicAccess = BlobContainerPublicAccessType.Blob;
+            container.SetPermissions(containerPermissions);
+        }
+
     }
 }

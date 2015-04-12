@@ -14,6 +14,9 @@
         <div>
             <asp:FileUpload ID="FileUpload1" runat="server" /><asp:Button ID="Button2" runat="server" Text="Upload File" OnClick="Button2_Click" />
         </div>
+        <div>
+            <asp:Button ID="Button3" runat="server" Text="Set Permissions" OnClick="Button3_Click" />
+        </div>
     </form>
 </body>
 </html>
