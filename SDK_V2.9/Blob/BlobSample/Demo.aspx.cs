@@ -17,6 +17,7 @@ namespace BlobSample
 
         }
 
+        //Creating a container
         protected void Button1_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
@@ -25,6 +26,7 @@ namespace BlobSample
             container.CreateIfNotExists();
         }
 
+        //Uploading file to a blob.
         protected void Button2_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
@@ -35,6 +37,7 @@ namespace BlobSample
             Response.Write(blob.Uri.ToString());
         }
 
+        //Setting blog permission for public access.
         protected void Button3_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
@@ -45,6 +48,7 @@ namespace BlobSample
             container.SetPermissions(containerPermissions);
         }
 
+        //Deleting all blobs in a container
         protected void Button4_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
@@ -57,6 +61,7 @@ namespace BlobSample
             }
         }
 
+        //Download a blob into a temp file.
         protected void Button5_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
