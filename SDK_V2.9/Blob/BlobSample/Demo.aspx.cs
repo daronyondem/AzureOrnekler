@@ -69,11 +69,14 @@ namespace BlobSample
             CloudBlobContainer container = blobClient.GetContainerReference("files");
             foreach (var blobItem in container.ListBlobs())
             {
-                using (var fileStream = System.IO.File.OpenWrite(Path.GetTempFileName()))
+                string tempPath = Path.GetTempFileName();
+                using (var fileStream = System.IO.File.OpenWrite(tempPath))
                 {
                     ((ICloudBlob)blobItem).DownloadToStream(fileStream);
                 }
+                Response.Write(tempPath + "<br/>");
             }
+            
         }
     }
 }
