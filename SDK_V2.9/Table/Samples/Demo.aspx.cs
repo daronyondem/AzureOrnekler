@@ -94,7 +94,7 @@ namespace Samples
             CloudTable table = tableClient.GetTableReference("Urunler");
             await table.CreateIfNotExistsAsync();
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 2000; i++)
             {
                 Urun urun = new Urun()
                 {
