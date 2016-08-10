@@ -109,7 +109,7 @@ namespace Samples
 
             //Query data
             TableQuery<Urun> partitionScanQuery = new TableQuery<Urun>().Where
-            (TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Silver"));
+            (TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Musteri1"));
 
             TableContinuationToken token = null;
             do
