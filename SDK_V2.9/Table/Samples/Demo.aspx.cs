@@ -66,13 +66,14 @@ namespace Samples
             CloudTable table = tableClient.GetTableReference("Urunler");
             TableBatchOperation batchOperation = new TableBatchOperation();
 
+            //All entities in a given batch must have the same partition key.
             for (int i = 0; i < 100; i++)
             {
                 batchOperation.InsertOrMerge(new Urun()
                 {
-                    PartitionKey = "Musteri" + i.ToString(),
-                    RowKey = (new Random().Next(1, 100)).ToString(),
-                    Adi = "Deneme",
+                    PartitionKey = "Musteri1",
+                    RowKey = i.ToString(),
+                    Adi = "Deneme" + i.ToString(),
                     Aciklama = "Açıklama"
                 });
             }
