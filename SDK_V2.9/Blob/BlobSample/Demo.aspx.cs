@@ -61,7 +61,7 @@ namespace BlobSample
             }
         }
 
-        //Download a blob into a temp file.
+        //Download all blob into a temp file.
         protected void Button5_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
