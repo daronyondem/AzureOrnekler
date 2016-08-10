@@ -16,6 +16,7 @@ namespace Samples
 
         }
 
+        //Create a table if it does not exists.
         protected async void Button1_Click(object sender, EventArgs e)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
@@ -24,6 +25,7 @@ namespace Samples
             await table.CreateIfNotExistsAsync();
         }
 
+        //Instert Entity into the table.
         protected async void Button2_Click(object sender, EventArgs e)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
@@ -40,6 +42,7 @@ namespace Samples
             TableResult result = await table.ExecuteAsync(insertOrMergeOperation);
         }
 
+        //Delete entity based on RowKey and ParitionKey.
         protected async void Button3_Click(object sender, EventArgs e)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
@@ -55,6 +58,7 @@ namespace Samples
             }
         }
 
+        //Table Batch Operation in a transaction.
         protected async void Button4_Click(object sender, EventArgs e)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
@@ -80,6 +84,7 @@ namespace Samples
             }
         }
 
+        //ContinuationToken Sample.
         protected async void Button5_Click(object sender, EventArgs e)
         {
             //Creating test data.
