@@ -16,6 +16,7 @@ namespace Frontface
 
         }
 
+        //Create a queue
         protected async void Button1_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
@@ -24,6 +25,7 @@ namespace Frontface
             await q.CreateIfNotExistsAsync();
         }
 
+        //Adding a job into the queue
         protected void Button2_Click(object sender, EventArgs e)
         {
             CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
