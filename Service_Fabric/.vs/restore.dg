@@ -1,0 +1,7 @@
+#:D:\Temp\WebSvc\WebSvc.xproj
+D:\Temp\WebSvc\WebSvc.xproj|D:\Temp\CounterInterfaces\CounterInterfaces.csproj
+#:D:\Temp\Application1\Application1.sfproj
+D:\Temp\Application1\Application1.sfproj|D:\Temp\WebSvc\WebSvc.xproj
+D:\Temp\Application1\Application1.sfproj|D:\Temp\StatefulSvc\StatefulSvc.csproj
+D:\Temp\WebSvc\WebSvc.xproj|D:\Temp\CounterInterfaces\CounterInterfaces.csproj
+D:\Temp\StatefulSvc\StatefulSvc.csproj|D:\Temp\CounterInterfaces\CounterInterfaces.csproj
