@@ -1170,6 +1170,22 @@
           "lib/net45/System.Fabric.dll": {}
         }
       },
+      "Microsoft.ServiceFabric.Actors/2.3.301": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.ServiceFabric": "[5.3.301]",
+          "Microsoft.ServiceFabric.Data": "[2.3.301]",
+          "Microsoft.ServiceFabric.Services": "[2.3.301]"
+        },
+        "compile": {
+          "lib/net45/Microsoft.ServiceFabric.Actors.dll": {},
+          "lib/net45/ServiceFabricServiceModel.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.ServiceFabric.Actors.dll": {},
+          "lib/net45/ServiceFabricServiceModel.dll": {}
+        }
+      },
       "Microsoft.ServiceFabric.Data/2.3.301": {
         "type": "package",
         "dependencies": {
@@ -1767,6 +1783,9 @@
         "runtime": {
           "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll": {}
         }
+      },
+      "ActorSvc.Interfaces/1.0.0": {
+        "type": "project"
       },
       "CounterInterfaces/1.0.0": {
         "type": "project"
@@ -2800,6 +2819,20 @@
         "lib/net45/System.Fabric.Strings.dll",
         "lib/net45/System.Fabric.dll",
         "lib/net45/System.Fabric.xml"
+      ]
+    },
+    "Microsoft.ServiceFabric.Actors/2.3.301": {
+      "sha512": "SRYPcx8FKEekORl5fBpT1nwA2eP/fPSOSLpFY4NeSQUuiSVDX/ppaO9x0X76fZ4MGVRhKTzB31eBK60O+ha86g==",
+      "type": "package",
+      "path": "Microsoft.ServiceFabric.Actors/2.3.301",
+      "files": [
+        "Microsoft.ServiceFabric.Actors.2.3.301.nupkg.sha512",
+        "Microsoft.ServiceFabric.Actors.nuspec",
+        "build/FabActUtil.exe",
+        "build/Microsoft.ServiceFabric.Actors.targets",
+        "lib/net45/Microsoft.ServiceFabric.Actors.dll",
+        "lib/net45/Microsoft.ServiceFabric.Actors.xml",
+        "lib/net45/ServiceFabricServiceModel.dll"
       ]
     },
     "Microsoft.ServiceFabric.Data/2.3.301": {
@@ -4685,6 +4718,10 @@
         "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.xml"
       ]
     },
+    "ActorSvc.Interfaces/1.0.0": {
+      "type": "project",
+      "msbuildProject": "../ActorSvc.Interfaces/ActorSvc.Interfaces.csproj"
+    },
     "CounterInterfaces/1.0.0": {
       "type": "project",
       "msbuildProject": "../CounterInterfaces/CounterInterfaces.csproj"
@@ -4705,11 +4742,13 @@
       "Microsoft.Extensions.Logging.Debug >= 1.0.0",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
       "Microsoft.ServiceFabric >= 5.3.301",
+      "Microsoft.ServiceFabric.Actors >= 2.3.301",
       "Microsoft.ServiceFabric.Data >= 2.3.301",
       "Microsoft.ServiceFabric.Services >= 2.3.301",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0"
     ],
     ".NETFramework,Version=v4.5.2": [
+      "ActorSvc.Interfaces",
       "CounterInterfaces"
     ]
   },

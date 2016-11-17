@@ -5,10 +5,16 @@
     <Parameter Name="StatefulSvc_MinReplicaSetSize" DefaultValue="3" />
     <Parameter Name="StatefulSvc_PartitionCount" DefaultValue="1" />
     <Parameter Name="StatefulSvc_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="ActorSvcActorService_PartitionCount" DefaultValue="10" />
+    <Parameter Name="ActorSvcActorService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="ActorSvcActorService_TargetReplicaSetSize" DefaultValue="3" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
        ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ActorSvcPkg" ServiceManifestVersion="1.0.0" />
+  </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="WebSvcPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
@@ -31,6 +37,11 @@
     <Service Name="StatefulSvc">
       <StatefulService ServiceTypeName="StatefulSvcType" TargetReplicaSetSize="[StatefulSvc_TargetReplicaSetSize]" MinReplicaSetSize="[StatefulSvc_MinReplicaSetSize]">
         <UniformInt64Partition PartitionCount="[StatefulSvc_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="ActorSvcActorService" GeneratedIdRef="fb9acdf2-b3c1-46af-9c1c-762c3ab86c46|Persisted">
+      <StatefulService ServiceTypeName="ActorSvcActorServiceType" TargetReplicaSetSize="[ActorSvcActorService_TargetReplicaSetSize]" MinReplicaSetSize="[ActorSvcActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[ActorSvcActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
       </StatefulService>
     </Service>
   </DefaultServices>

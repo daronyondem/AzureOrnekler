@@ -5,5 +5,8 @@
     <Parameter Name="StatefulSvc_PartitionCount" Value="1" />
     <Parameter Name="StatefulSvc_MinReplicaSetSize" Value="1" />
     <Parameter Name="StatefulSvc_TargetReplicaSetSize" Value="1" />
+    <Parameter Name="ActorSvcActorService_PartitionCount" Value="1" />
+    <Parameter Name="ActorSvcActorService_TargetReplicaSetSize" Value="1" />
+    <Parameter Name="ActorSvcActorService_MinReplicaSetSize" Value="1" />
   </Parameters>
 </Application>

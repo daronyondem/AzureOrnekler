@@ -1,6 +1,32 @@
 {
   "version": 2,
   "exports": {
+    "ActorSvc.Interfaces/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/ActorSvc.Interfaces.dll": {}
+      },
+      "runtime": {
+        "../packages/Microsoft.ServiceFabric.5.3.301/lib/net45/Microsoft.ServiceFabric.Internal.Strings.dll": {},
+        "../packages/Microsoft.ServiceFabric.5.3.301/lib/net45/Microsoft.ServiceFabric.Internal.dll": {},
+        "../packages/Microsoft.ServiceFabric.5.3.301/lib/net45/System.Fabric.Strings.dll": {},
+        "../packages/Microsoft.ServiceFabric.5.3.301/lib/net45/System.Fabric.dll": {},
+        "../packages/Microsoft.ServiceFabric.Actors.2.3.301/lib/net45/Microsoft.ServiceFabric.Actors.dll": {},
+        "../packages/Microsoft.ServiceFabric.Actors.2.3.301/lib/net45/ServiceFabricServiceModel.dll": {},
+        "../packages/Microsoft.ServiceFabric.Data.2.3.301/lib/net45/Microsoft.ServiceFabric.Data.Interfaces.dll": {},
+        "../packages/Microsoft.ServiceFabric.Data.2.3.301/lib/net45/Microsoft.ServiceFabric.Data.dll": {},
+        "../packages/Microsoft.ServiceFabric.Services.2.3.301/lib/net45/Microsoft.ServiceFabric.Services.dll": {},
+        "bin/Debug/ActorSvc.Interfaces.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/ActorSvc.Interfaces.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    },
     "CounterInterfaces/1.0.0": {
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",

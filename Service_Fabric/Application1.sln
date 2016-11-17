@@ -14,6 +14,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebSvc", "WebSvc\WebSvc.xpr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterInterfaces", "CounterInterfaces\CounterInterfaces.csproj", "{25639CF0-B417-4B95-B287-160F0AF46319}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorSvc", "ActorSvc\ActorSvc.csproj", "{B2639777-91E1-4C8A-91ED-72A3868541EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorSvc.Interfaces", "ActorSvc.Interfaces\ActorSvc.Interfaces.csproj", "{CC2E00F3-8603-446F-8137-C4656A3F0EC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,18 @@ Global
 		{25639CF0-B417-4B95-B287-160F0AF46319}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25639CF0-B417-4B95-B287-160F0AF46319}.Release|x64.ActiveCfg = Release|Any CPU
 		{25639CF0-B417-4B95-B287-160F0AF46319}.Release|x64.Build.0 = Release|Any CPU
+		{B2639777-91E1-4C8A-91ED-72A3868541EF}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B2639777-91E1-4C8A-91ED-72A3868541EF}.Debug|x64.ActiveCfg = Debug|x64
+		{B2639777-91E1-4C8A-91ED-72A3868541EF}.Debug|x64.Build.0 = Debug|x64
+		{B2639777-91E1-4C8A-91ED-72A3868541EF}.Release|Any CPU.ActiveCfg = Release|x64
+		{B2639777-91E1-4C8A-91ED-72A3868541EF}.Release|x64.ActiveCfg = Release|x64
+		{B2639777-91E1-4C8A-91ED-72A3868541EF}.Release|x64.Build.0 = Release|x64
+		{CC2E00F3-8603-446F-8137-C4656A3F0EC4}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{CC2E00F3-8603-446F-8137-C4656A3F0EC4}.Debug|x64.ActiveCfg = Debug|x64
+		{CC2E00F3-8603-446F-8137-C4656A3F0EC4}.Debug|x64.Build.0 = Debug|x64
+		{CC2E00F3-8603-446F-8137-C4656A3F0EC4}.Release|Any CPU.ActiveCfg = Release|x64
+		{CC2E00F3-8603-446F-8137-C4656A3F0EC4}.Release|x64.ActiveCfg = Release|x64
+		{CC2E00F3-8603-446F-8137-C4656A3F0EC4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

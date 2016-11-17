@@ -29,6 +29,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ActorSvc\ActorSvc.csproj" />
     <ProjectReference Include="..\StatefulSvc\StatefulSvc.csproj" />
     <ProjectReference Include="..\WebSvc\WebSvc.xproj" />
   </ItemGroup>
