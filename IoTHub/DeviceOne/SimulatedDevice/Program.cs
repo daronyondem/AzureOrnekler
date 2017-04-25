@@ -19,6 +19,7 @@ namespace SimulatedDevice
             deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey("myFirstDevice", deviceKey), TransportType.Mqtt);
 
             SendDeviceToCloudMessagesAsync();
+            ReceiveC2dAsync();
             Console.ReadLine();
         }
 
@@ -46,6 +47,22 @@ namespace SimulatedDevice
                 Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
 
                 await Task.Delay(1000);
+            }
+        }
+
+        private static async void ReceiveC2dAsync()
+        {
+            Console.WriteLine("\nReceiving cloud to device messages from service");
+            while (true)
+            {
+                Message receivedMessage = await deviceClient.ReceiveAsync();
+                if (receivedMessage == null) continue;
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Received message: {0}", Encoding.ASCII.GetString(receivedMessage.GetBytes()));
+                Console.ResetColor();
+
+                await deviceClient.CompleteAsync(receivedMessage);
             }
         }
     }
