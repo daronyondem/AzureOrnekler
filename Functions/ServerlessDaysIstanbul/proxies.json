@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "MyAvatarProxy": {
+      "matchCondition": {
+        "route": "api/avatar/{name}",
+        "methods": [
+          "GET"
+        ]
+      },
+      "backendUri": "https://api.adorable.io/avatars/200/{name}.png"
+    }
+  }
+}
