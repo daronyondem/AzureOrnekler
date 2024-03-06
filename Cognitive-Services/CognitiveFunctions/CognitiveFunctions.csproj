@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.2.0-preview" />
     <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.0.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0007" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.7" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
